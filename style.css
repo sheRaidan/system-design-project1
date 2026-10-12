@@ -35,6 +35,13 @@ header{
     grid-column: span 12;
 }
 
+#specify p{
+    background: none;
+}
+#specify p:hover{
+    background: white;
+}
+
 #settings *, #dateRange *{
     display: inline;
 }
