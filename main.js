@@ -88,24 +88,23 @@ function generateList(page){
 
             style.forEach(list => {
                 if (baseStyle.includes(list)){
-                    match = 50;
                     checkStyle = true;
                 }
             });
 
-            if (checkStyle){
-                if (country == baseCountry || (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
-                    console.log(`either ${country} matches ${baseCountry}, or ${year} is near ${baseYear}`);
-                    match = 75;
-                    getInfo(data.results[thisOne].id, count, match);
-                    count++;
+            if (country == baseCountry || (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
+                console.log(`either ${country} matches ${baseCountry}, or ${year} is near ${baseYear}`);
+                match = 75;
+                if (checkStyle){
+                    match = 90;
                 }else{
-                    console.log(country + ", " + year);
+                    console.log("wrong style");
                 }
+                getInfo(data.results[thisOne].id, count, match);
+                count++;
             }else{
-                console.log("wrong style");
-            }
-            
+                console.log(country + ", " + year);
+            }            
             thisOne++;
         }
         if (count < 10){ // if <10, go to the next page
