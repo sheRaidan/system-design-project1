@@ -10,6 +10,7 @@ var searchBtn = document.getElementById("searchBtn");
 var searcP2 = document.getElementById("specify");
 
 var baseYear, baseCountry, baseStyle;
+var ifYear, ifCountry = true;
 
 // ------------------------------ song search ------------------------------
 function search(){
@@ -59,12 +60,12 @@ function getSong(id){
         genre = data.genres[0];
         baseStyle = data.styles;
 
-        generateList(1);
+        generateList(1, parseInt(baseYear, 10)-10, parseInt(baseYear, 10)+10);
     })
     .catch(error => console.error(error));
 }
 
-function generateList(page){
+function generateList(page, min, max){ // params mean that the min & max can be changed to whatever the user inputs
     var count = 0;
     var thisOne = 0;
     // fetch list of tracks in found genre
@@ -93,10 +94,10 @@ function generateList(page){
             });
 
             // only match if either the year or country match
-            if (country == baseCountry || (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
+            if (country == baseCountry || (parseInt(year, 10) > min && parseInt(year, 10) < max)){
                 match = 60;
                 // boost rating if both match
-                if (country == baseCountry && (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
+                if (country == baseCountry && (parseInt(year, 10) > min && parseInt(year, 10) < max)){
                     console.log(`${country} matches ${baseCountry}, & ${year} is near ${baseYear}`);
                     match += 15; 
                 }else{
