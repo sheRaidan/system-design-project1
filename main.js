@@ -145,6 +145,7 @@ function getInfo(song, num, percent){
 
 // ------------------------------ update the search reqs ------------------------------
 function update(){
+    resultList.innerHTML = "";
     var checkYear = document.getElementById("yearCheck");
     ifYear = checkYear.checked;
     var countryCheck = document.getElementById("originCheck");
