@@ -86,10 +86,13 @@ h1, #match{
 
 /* responsivity */
 @media (max-width: 600px) {
-  body {
-    font-size: 1.2rem;
-  }
-  .result{
-    margin: 5px 0px 5px -1em;
-}
+    body {
+        font-size: 1.2rem;
+    }
+    .result{
+        margin: 5px 0px 5px -1em;
+    }
+    #search{
+        grid-column: span 8;
+    }
 }
