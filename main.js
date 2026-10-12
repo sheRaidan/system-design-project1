@@ -76,7 +76,7 @@ function generateList(page){
         //     getInfo(data.results[i].id, i);
         // }
 
-        while (count < 10 || thisOne < 100){
+        while (count < 10 && thisOne < 100){ // once either one of these is done, check which
             var match = 0;
             var checkStyle = false;
             var country = data.results[thisOne].country;
@@ -108,9 +108,9 @@ function generateList(page){
             
             thisOne++;
         }
-        if (count < 10){
+        if (count < 10){ // if <10, go to the next page
             thisOne = 0;
-            generateList(page+1);
+            generateList(page+1); // rerun on next page
         }
     })
     .catch(error => console.error(error));
