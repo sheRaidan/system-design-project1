@@ -27,7 +27,7 @@ function search(){
     artist.style.display = "inline";
 
     // fetch the Discogs search for the song title
-    fetch(`http://api.discogs.com/database/search?type=release&q=${search}`)
+    fetch(`https://api.discogs.com/database/search?type=release&q=${search}`)
     .then(response => response.json())
     .then(data => {
         // genre = data.results[0].genre[0];
@@ -67,7 +67,7 @@ function generateList(){
     var count = 0;
     var thisOne = 0;
     // fetch list of tracks in found genre
-    fetch(`http://api.discogs.com/database/search?genre=${genre}`)
+    fetch(`https://api.discogs.com/database/search?genre=${genre}`)
     .then(response => response.json())
     .then(data => {
         console.log(genre);
