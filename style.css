@@ -38,7 +38,7 @@ header{
 #specify p{
     background: none;
     padding: 5px;
-    width: fit-contents;
+    width: fit-content;
     transition: all 0.2s;
 }
 #specify p:hover{
