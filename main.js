@@ -148,7 +148,7 @@ function update(){
     resultList.innerHTML = "";
     var checkYear = document.getElementById("yearCheck");
     ifYear = checkYear.checked;
-    var countryCheck = document.getElementById("originCheck");
+    var checkCountry = document.getElementById("originCheck");
     ifCountry = checkCountry.checked;
 
     if (ifYear){
