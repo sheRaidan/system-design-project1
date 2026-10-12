@@ -9,7 +9,7 @@ var searchBox = document.getElementById("search");
 var searchBtn = document.getElementById("searchBtn");
 var searcP2 = document.getElementById("specify");
 
-var baseYear, baseCountry;
+var baseYear, baseCountry, baseStyle;
 
 // ------------------------------ song search ------------------------------
 function search(){
@@ -57,6 +57,7 @@ function getSong(id){
         baseCountry = data.country
         baseYear = String(data.year);
         genre = data.genres[0];
+        baseStyle = data.styles;
 
         generateList();
     })
@@ -76,22 +77,42 @@ function generateList(){
         // }
 
         while (count < 10){
+            var match = 0;
+            var checkStyle = false;
             var country = data.results[thisOne].country;
             var year = data.results[thisOne].year;
+            var style = data.results[thisOne].style;
+            // how to get style info
+            // don't know - how many styles, what order, which could match
+            // what about forEach that runs thru this song's styles n checks if the other list includes it
 
-            if (country == baseCountry || (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
-                getInfo(data.results[thisOne].id, count);
-                count++;
+            style.forEach(list => {
+                if (baseStyle.includes(list){
+                    match = 50;
+                    checkStyle = true;
+                }
+            });
+
+            if (checkStyle){
+                if (country == baseCountry || (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
+                    console.log(`either ${country} matches ${baseCountry}, or ${year} is near ${baseYear}`);
+                    match = 75;
+                    getInfo(data.results[thisOne].id, count, match);
+                    count++;
+                }else{
+                    console.log(country + ", " + year);
+                }
             }else{
-                console.log(country + ", " + year);
+                console.log("wrong style");
             }
+            
             thisOne++;
         }
     })
     .catch(error => console.error(error));
 }
 
-function getInfo(song, num){
+function getInfo(song, num, percent){
     fetch(`https://api.discogs.com/releases/${song}`) // fetch the track I'm looking for
     .then(response => response.json())
     .then(data => { // create each result using the fetched data
@@ -101,8 +122,8 @@ function getInfo(song, num){
                 <img src="${data.images[0].uri}" style="width: 100%;">
                 <p>${String(data.year)}</p>
                 <p>${data.country}</p>
-                <p>${data.tracklist[0].duration}</p>`;
-                // <h2 id="match">50% Match</h2></div>`;
+                <p>${data.tracklist[0].duration}</p>
+                <h2 id="match">${percent}% Match</h2></div>`;
         }
     })
     .catch(error => console.error(error));
