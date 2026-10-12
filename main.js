@@ -92,14 +92,24 @@ function generateList(page){
                 }
             });
 
+            // only match if either the year or country match
             if (country == baseCountry || (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
-                console.log(`either ${country} matches ${baseCountry}, or ${year} is near ${baseYear}`);
-                match = 75;
+                match = 60;
+                // boost rating if both match
+                if (country == baseCountry && (parseInt(year, 10) > parseInt(baseYear, 10)-10 && parseInt(year, 10) < parseInt(baseYear, 10)+10)){
+                    console.log(`${country} matches ${baseCountry}, & ${year} is near ${baseYear}`);
+                    match += 15; 
+                }else{
+                    console.log(`either ${country} matches ${baseCountry}, or ${year} is near ${baseYear}`);
+                }
+                // boost rating if style matches
+                // max rating as of now: 90
                 if (checkStyle){
-                    match = 90;
+                    match += 15;
                 }else{
                     console.log("wrong style");
                 }
+                // once the number is calculated, paste to the page
                 getInfo(data.results[thisOne].id, count, match);
                 count++;
             }else{
