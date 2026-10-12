@@ -144,7 +144,7 @@ function getInfo(song, num, percent){
 }
 
 // ------------------------------ show the year input ------------------------------
-var check = false; // create a boolean to hide/show content
+var check = true; // create a boolean to hide/show content
 function show(){
     var box = document.getElementById("dateRange");
     check = !check;
