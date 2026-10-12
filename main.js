@@ -68,7 +68,7 @@ function generateList(page){
     var count = 0;
     var thisOne = 0;
     // fetch list of tracks in found genre
-    fetch(`https://api.discogs.com/database/search?genre=${genre}&page=${page}&per_page=200`)
+    fetch(`https://api.discogs.com/database/search?genre=${genre}&page=${page}&per_page=100`)
     .then(response => response.json())
     .then(data => {
         console.log(genre);
@@ -76,7 +76,7 @@ function generateList(page){
         //     getInfo(data.results[i].id, i);
         // }
 
-        while (count < 10 || thisOne < 200){
+        while (count < 10 || thisOne < 100){
             var match = 0;
             var checkStyle = false;
             var country = data.results[thisOne].country;
@@ -107,6 +107,10 @@ function generateList(page){
             }
             
             thisOne++;
+        }
+        if (count < 10){
+            thisOne = 0;
+            generateList(page+1);
         }
     })
     .catch(error => console.error(error));
