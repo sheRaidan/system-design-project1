@@ -87,7 +87,7 @@ function generateList(){
             // what about forEach that runs thru this song's styles n checks if the other list includes it
 
             style.forEach(list => {
-                if (baseStyle.includes(list){
+                if (baseStyle.includes(list)){
                     match = 50;
                     checkStyle = true;
                 }
