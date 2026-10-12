@@ -103,9 +103,9 @@ function generateList(page){
                     console.log(`either ${country} matches ${baseCountry}, or ${year} is near ${baseYear}`);
                 }
                 // boost rating if style matches
-                // max rating as of now: 90
+                // max rating as of now: 95
                 if (checkStyle){
-                    match += 15;
+                    match += 20;
                 }else{
                     console.log("wrong style");
                 }
