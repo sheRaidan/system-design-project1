@@ -19,13 +19,13 @@ function search(){
 
     var search = document.getElementById("search").value.toLowerCase().replaceAll(" ", "-");
     // var results = document.getElementById("results");
-    var artist = document.getElementById("artist");
+    // var artist = document.getElementById("artist");
     resultList.innerHTML = ""; // reset results every time a search is made
     searcP2.innerHTML = "";
 
     searcP2.style.display = "block"; // show results
     
-    artist.style.display = "inline";
+    // artist.style.display = "inline";
 
     // fetch the Discogs search for the song title
     fetch(`https://api.discogs.com/database/search?type=release&q=${search}`)
@@ -94,7 +94,7 @@ function generateList(page, min, max){ // params mean that the min & max can be 
             });
 
             // only match if either the year or country match
-            if (country == baseCountry || (parseInt(year, 10) > min && parseInt(year, 10) < max)){
+            if ((ifCountry && country == baseCountry) || (parseInt(year, 10) > min && parseInt(year, 10) < max)){
                 match = 60;
                 // boost rating if both match
                 if (country == baseCountry && (parseInt(year, 10) > min && parseInt(year, 10) < max)){
@@ -143,13 +143,31 @@ function getInfo(song, num, percent){
     .catch(error => console.error(error));
 }
 
+// ------------------------------ update the search reqs ------------------------------
+function update(){
+    var checkYear = document.getElementById("yearCheck");
+    ifYear = checkYear.checked;
+    var countryCheck = document.getElementById("originCheck");
+    ifCountry = checkCountry.checked;
+
+    if (ifYear){
+        var userMin = document.getElementById("min").value;
+        var userMax = document.getElementById("max").value;
+
+        if (userMin.toString().length == 4 && userMax.toString().length == 4){
+            generateList(1, userMin, userMax);
+        }
+    }
+}
+
 // ------------------------------ show the year input ------------------------------
-var check = true; // create a boolean to hide/show content
+// var check = true; // create a boolean to hide/show content
 function show(){
+    var checkYear = document.getElementById("yearCheck");
     var box = document.getElementById("dateRange");
-    check = !check;
-    console.log(check); 
-    if (check){ // if the user wants to search by year, they need to access the year input boxes
+    // check = !check;
+    // console.log(check); 
+    if (checkYear.checked){ // if the user wants to search by year, they need to access the year input boxes
         box.style.display = "inline";
     }else{
         box.style.display = "none";
