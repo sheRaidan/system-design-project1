@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music Recommender</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Music Recommender</h1>
+    </header>
+    <input id="search" type="text" placeholder="Enter any song title">
+    <button onclick="search()" id="searchBtn">Search</button>
+    <div id="specify"></div>
+    <div id="results">
+        <h2 id="label"></h2>
+        <div id="settings" style="display: none;">
+            <p>Match by:</p>
+            <ul>
+                <li>
+                    Length
+                    <input type="checkbox" id="lengthCheck">
+                </li>
+                <li>
+                    Year
+                    <input type="checkbox" id="yearCheck" onclick="show()">
+                    <div id="dateRange" style="display: none;">
+                        Year Range
+                        <input id="min" type="number" placeholder="0000">
+                        <p>-</p>
+                        <input id="max" type="number" placeholder="0000">
+                    </div>
+                </li>
+                <li>
+                    Country of Origin
+                    <input type="checkbox" id="originCheck">
+                </li>
+                <li id="artist">
+                    Artist
+                    <input type="checkbox" id="artistCheck">
+                </li>
+                <li><button id="update" onclick="update()">Update</button></li>
+            </ul>
+        </div>
+        <ul id="list"></ul>
+        <!-- <div class="result">
+            <h3>text</h3>
+        </div> -->
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

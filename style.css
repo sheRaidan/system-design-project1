@@ -1,0 +1,95 @@
+html{
+    font-size: 10px;
+}
+body{
+    font-size: 1.6rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    font-family: "Comfortaa", sans-serif;
+    font-weight: bold;
+    background: lightgrey;
+}
+header{
+    grid-column: span 12;
+    background: red;
+    margin: -8px;
+    padding: 25px;
+    border-radius: 0px 0px 25px 25px;
+    border-bottom: 8px solid white;
+}
+
+#search{
+    padding: 5px;
+    /* min-width: fit-content; */
+    grid-column: span 4;
+}
+#search, #searchBtn{
+    margin-top: 30vh;
+    font-family: "Comfortaa", sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#results, #specify{
+    display: none;
+    grid-column: span 12;
+}
+
+#settings *, #dateRange *{
+    display: inline;
+}
+
+li{
+    padding-left: 5vw;
+}
+
+#dateRange, #settings, .result{
+    border: 1px solid;
+    padding: 5px;
+}
+#min, #max{
+    border: none;
+    max-width: 4em;
+    text-align: center;
+}
+#update{
+    font-family: "Comfortaa", sans-serif;
+    font-weight: bold;
+}
+.result{
+    margin: 5px 25vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+h3{
+    grid-column: span 3;
+}
+.result p{
+    grid-column-start: 2;
+}
+.result h2{
+    text-align: right;
+}
+
+#settings, .result{
+    background: white;
+}
+
+img{
+    grid-row: span 3;
+}
+
+h1, #match{
+    font-family: "Climate Crisis", sans-serif;
+    font-weight: normal;
+}
+
+/* responsivity */
+@media (max-width: 600px) {
+  body {
+    font-size: 1.2rem;
+  }
+  .result{
+    margin: 5px 0px 5px -1em;
+}
+}
