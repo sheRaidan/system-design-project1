@@ -18,17 +18,17 @@
     <div id="specify"></div>
     <div id="results">
         <h2 id="label"></h2>
-        <div id="settings" style="display: none;">
+        <div id="settings">
             <p>Match by:</p>
             <ul>
-                <li>
+                <li style="display: none;">
                     Length
                     <input type="checkbox" id="lengthCheck">
                 </li>
                 <li>
                     Year
-                    <input type="checkbox" id="yearCheck" onclick="show()">
-                    <div id="dateRange" style="display: none;">
+                    <input type="checkbox" id="yearCheck" onclick="show()" checked>
+                    <div id="dateRange">
                         Year Range
                         <input id="min" type="number" placeholder="0000">
                         <p>-</p>
@@ -37,9 +37,9 @@
                 </li>
                 <li>
                     Country of Origin
-                    <input type="checkbox" id="originCheck">
+                    <input type="checkbox" id="originCheck" checked>
                 </li>
-                <li id="artist">
+                <li id="artist" style="display: none;">
                     Artist
                     <input type="checkbox" id="artistCheck">
                 </li>
@@ -47,9 +47,6 @@
             </ul>
         </div>
         <ul id="list"></ul>
-        <!-- <div class="result">
-            <h3>text</h3>
-        </div> -->
     </div>
     <script src="main.js"></script>
 </body>
