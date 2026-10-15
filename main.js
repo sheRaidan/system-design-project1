@@ -153,7 +153,10 @@ function getInfo(song, num, percent){
         }
         sortList();
     })
-    .catch(error => console.error(error));
+    .catch(error => {
+        sortList();
+        console.error(error);
+    });
 }
 
 // ------------------------------ sort items then add to page ------------------------------
