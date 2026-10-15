@@ -12,6 +12,8 @@ var searcP2 = document.getElementById("specify");
 var baseYear, baseCountry, baseStyle;
 var ifYear, ifCountry = true;
 
+var resultCollect = []; // create array of results in order to sort them
+
 // ------------------------------ song search ------------------------------
 function search(){
     searchBox.style.marginTop = "16px";
@@ -22,7 +24,8 @@ function search(){
     // var artist = document.getElementById("artist");
     resultList.innerHTML = ""; // reset results every time a search is made
     searcP2.innerHTML = "";
-
+    resultCollect = []; // empty the list of results from last search
+    results.style.display = "none"; // hide last result page
     searcP2.style.display = "block"; // show results
     
     // artist.style.display = "inline";
@@ -133,7 +136,6 @@ function generateList(page, min, max){ // params mean that the min & max can be 
     });
 }
 
-var resultCollect = []; // create array of results in order to sort them
 function getInfo(song, num, percent){
     fetch(`https://api.discogs.com/releases/${song}`) // fetch the track I'm looking for
     .then(response => response.json())
@@ -170,6 +172,7 @@ function sortList(){
 
 // ------------------------------ update the search reqs ------------------------------
 function update(){
+    resultCollect = []; // empty the list of results from last update
     resultList.innerHTML = "";
     var checkYear = document.getElementById("yearCheck");
     ifYear = checkYear.checked;
