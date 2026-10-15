@@ -113,7 +113,7 @@ function generateList(page, min, max){ // params mean that the min & max can be 
                 }
                 // once the number is calculated, paste to the page
                 getInfo(data.results[thisOne].id, count, match);
-                sortList();
+                // sortList();
                 count++;
             }else{
                 console.log(country + ", " + year);
