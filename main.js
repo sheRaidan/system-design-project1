@@ -165,7 +165,7 @@ function sortList(){
 
     resultCollect.forEach(item => {
         resultList.innerHTML += item.text;
-    }
+    });
 }
 
 // ------------------------------ update the search reqs ------------------------------
