@@ -65,6 +65,7 @@ function getSong(id){
     .catch(error => console.error(error));
 }
 
+var isDone = false;
 function generateList(page, min, max){ // params mean that the min & max can be changed to whatever the user inputs
     var count = 0;
     var thisOne = 0;
@@ -112,6 +113,7 @@ function generateList(page, min, max){ // params mean that the min & max can be 
                 }
                 // once the number is calculated, paste to the page
                 getInfo(data.results[thisOne].id, count, match);
+                sortList();
                 count++;
             }else{
                 console.log(country + ", " + year);
@@ -121,26 +123,42 @@ function generateList(page, min, max){ // params mean that the min & max can be 
         if (count < 10){ // if <10, go to the next page
             thisOne = 0;
             generateList(page+1); // rerun on next page
+        }else{
+            isDone = true;
+        }
+    })
+    .catch(error => {
+        isDone = true;
+        console.error(error);
+    });
+}
+var resultCollect = [];
+function getInfo(song, num, percent){
+    fetch(`https://api.discogs.com/releases/${song}`) // fetch the track I'm looking for
+    .then(response => response.json())
+    .then(data => { // create each result using the fetched data
+        if (artistName == data.artists[0].name || artistName == "none"){ // part of unused feature
+            resultCollect.push(
+                {"text": `<div class="result" id="${num}">
+                    <h3>${data.title} - ${data.artists[0].name}</h3>
+                    <img src="${data.images[0].uri}" style="width: 100%;">
+                    <p>${String(data.year)}</p>
+                    <p>${data.country}</p>
+                    <p>${data.tracklist[0].duration}</p>
+                    <h2 id="match">${percent}% Match</h2></div>`,
+                "score": percent}
+            );
         }
     })
     .catch(error => console.error(error));
 }
 
-function getInfo(song, num, percent){
-    fetch(`https://api.discogs.com/releases/${song}`) // fetch the track I'm looking for
-    .then(response => response.json())
-    .then(data => { // create each result using the fetched data
-        if (artistName == data.artists[0].name || artistName == "none"){
-            resultList.innerHTML += `<div class="result" id="${num}">
-                <h3>${data.title} - ${data.artists[0].name}</h3>
-                <img src="${data.images[0].uri}" style="width: 100%;">
-                <p>${String(data.year)}</p>
-                <p>${data.country}</p>
-                <p>${data.tracklist[0].duration}</p>
-                <h2 id="match">${percent}% Match</h2></div>`;
-        }
-    })
-    .catch(error => console.error(error));
+// ------------------------------ sort items then add to page ------------------------------
+function sortList(){
+    resultCollect.sort((a, b) => b.score - a.score);
+    if (isDone){
+        resultList.innerHTML += resultCollect;
+    }
 }
 
 // ------------------------------ update the search reqs ------------------------------
