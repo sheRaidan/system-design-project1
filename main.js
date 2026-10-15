@@ -132,31 +132,33 @@ function generateList(page, min, max){ // params mean that the min & max can be 
         console.error(error);
     });
 }
-// var resultCollect = [];
+var resultCollect = [];
 function getInfo(song, num, percent){
     fetch(`https://api.discogs.com/releases/${song}`) // fetch the track I'm looking for
     .then(response => response.json())
     .then(data => { // create each result using the fetched data
         if (artistName == data.artists[0].name || artistName == "none"){ // part of unused feature
-            resultList.innerHTML += `<div class="result" id="${num}">
+            resultList.innerHTML = "";
+            resultCollect.push({
+                "text": `<div class="result" id="${num}">
                     <h3>${data.title} - ${data.artists[0].name}</h3>
                     <img src="${data.images[0].uri}" style="width: 100%;">
                     <p>${String(data.year)}</p>
                     <p>${data.country}</p>
                     <p>${data.tracklist[0].duration}</p>
-                    <h2 id="match">${percent}% Match</h2></div>`;
+                    <h2 id="match">${percent}% Match</h2></div>`,
+                "score": percent
+            });
         }
     })
     .catch(error => console.error(error));
 }
 // getting rid or this for now because it doesn't work
 // ------------------------------ sort items then add to page ------------------------------
-// function sortList(){
-//     resultCollect.sort((a, b) => b.score - a.score);
-//     if (isDone){
-//         resultList.innerHTML += resultCollect;
-//     }
-// }
+function sortList(){
+    resultCollect.sort((a, b) => b.score - a.score);
+    resultList.innerHTML += resultCollect;
+}
 
 // ------------------------------ update the search reqs ------------------------------
 function update(){
