@@ -159,7 +159,7 @@ function getInfo(song, num, percent){
 // ------------------------------ sort items then add to page ------------------------------
 function sortList(){
     resultCollect.sort((a, b) => b.score - a.score);
-    resultList.innerHTML += resultCollect;
+    resultList.innerHTML += resultCollect.text;
 }
 
 // ------------------------------ update the search reqs ------------------------------
