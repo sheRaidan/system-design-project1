@@ -132,7 +132,8 @@ function generateList(page, min, max){ // params mean that the min & max can be 
         console.error(error);
     });
 }
-var resultCollect = [];
+
+var resultCollect = []; // create array of results in order to sort them
 function getInfo(song, num, percent){
     fetch(`https://api.discogs.com/releases/${song}`) // fetch the track I'm looking for
     .then(response => response.json())
@@ -150,10 +151,11 @@ function getInfo(song, num, percent){
                 "score": percent
             });
         }
+        sortList();
     })
     .catch(error => console.error(error));
 }
-// getting rid or this for now because it doesn't work
+
 // ------------------------------ sort items then add to page ------------------------------
 function sortList(){
     resultCollect.sort((a, b) => b.score - a.score);
