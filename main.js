@@ -154,7 +154,7 @@ function getInfo(song, num, percent){
         sortList();
     })
     .catch(error => {
-        sortList();
+        // sortList();
         console.error(error);
     });
 }
@@ -162,7 +162,10 @@ function getInfo(song, num, percent){
 // ------------------------------ sort items then add to page ------------------------------
 function sortList(){
     resultCollect.sort((a, b) => b.score - a.score);
-    resultList.innerHTML += resultCollect.text;
+
+    resultCollect.forEach(item => {
+        resultList.innerHTML += item.text;
+    }
 }
 
 // ------------------------------ update the search reqs ------------------------------
