@@ -53,8 +53,13 @@ li{
     padding-left: 5vw;
 }
 
-#dateRange, #settings, .result{
+#dateRange{
     border: 1px solid;
+    padding: 5px;
+}
+#settings, .result{
+    border-radius: 5px;
+    border-bottom: 2px solid grey;
     padding: 5px;
 }
 #min, #max{
