@@ -2,7 +2,7 @@ html{
     font-size: 10px;
 }
 body{
-    font-size: 1.6rem;
+    font-size: 1.6rem; /* I've just gotten in the habit of sizing text this way, helps for responsive design I guess */
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     font-family: "Comfortaa", sans-serif;
@@ -19,6 +19,12 @@ header{
     border-bottom: 2px solid black;
 }
 
+/* copied from https://www.w3schools.com/howto/howto_css_placeholder.asp */
+::placeholder {
+  color: darkgreen;
+  opacity: 1; /* Firefox */
+}
+/* end of copied code */
 #search{
     padding: 5px;
     /* min-width: fit-content; */
