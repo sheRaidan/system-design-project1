@@ -23,12 +23,19 @@ header{
     padding: 5px;
     /* min-width: fit-content; */
     grid-column: span 4;
+    background: paleturquoise;
+    border-top: 2px solid #2f6f6f;
 }
-#search, #searchBtn{
+#search, button{
     margin-top: 30vh;
     font-family: "Comfortaa", sans-serif;
     font-weight: bold;
     border-radius: 5px;
+}
+button{
+    border-bottom: 2px solid black;
+    background: darkgreen;
+    color: paleturquoise;
 }
 
 #results, #specify{
