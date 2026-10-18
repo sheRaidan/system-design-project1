@@ -7,16 +7,16 @@ body{
     grid-template-columns: repeat(12, 1fr);
     font-family: "Comfortaa", sans-serif;
     font-weight: bold;
-    background: darkslategrey;
-    color: azure;
+    background: #1F3F3F;
+    color: paleturquoise;
 }
 header{
     grid-column: span 12;
-    background: limegreen;
+    background: darkgreen;
     margin: -8px;
     padding: 25px;
     border-radius: 0px 0px 25px 25px;
-    border-bottom: 8px solid midnightblue;
+    border-bottom: 2px solid black;
 }
 
 #search{
@@ -60,7 +60,7 @@ li{
 }
 #settings, .result{
     border-radius: 5px;
-    border-bottom: 2px solid midnightblue;
+    border-bottom: 2px solid black;
     padding: 5px;
 }
 #min, #max{
@@ -88,7 +88,7 @@ h3{
 }
 
 #settings, .result{
-    background: teal;
+    background: #2F6F6F;
 }
 
 img{
