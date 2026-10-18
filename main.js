@@ -3,19 +3,20 @@ var resultList = document.getElementById("list"); // made a section for just the
 const numR = 50; // limit the number of results shown
 
 var genre = "";
-var artistName = "none";
+var artistName = "none"; // from unused feature
 
 var searchBox = document.getElementById("search");
 var searchBtn = document.getElementById("searchBtn");
 var searcP2 = document.getElementById("specify");
 
-var baseYear, baseCountry, baseStyle;
+var baseYear, baseCountry, baseStyle; // these get used to hold the year, country, & style(s) of the searched song to match against songs of the same genre
 var ifYear, ifCountry = true;
 
 var resultCollect = []; // create array of results in order to sort them
 
 // ------------------------------ song search ------------------------------
 function search(){
+    // move the search stuff to make more room on the page
     searchBox.style.marginTop = "16px";
     searchBtn.style.marginTop = "16px";
 
@@ -23,9 +24,10 @@ function search(){
     // var results = document.getElementById("results");
     // var artist = document.getElementById("artist");
     resultList.innerHTML = ""; // reset results every time a search is made
-    searcP2.innerHTML = "";
+    searcP2.innerHTML = ""; // omg I misspelt this variable name lmao I mean as long as it matches everywhere it's fine
     resultCollect = []; // empty the list of results from last search
     results.style.display = "none"; // hide last result page
+    // wait a minute the var results is created in another function WHY DOES THIS CODE WORK ???
     searcP2.style.display = "block"; // show results
     
     // artist.style.display = "inline";
@@ -36,7 +38,7 @@ function search(){
     .then(data => {
         // genre = data.results[0].genre[0];
         data.results.forEach(result => {
-            if (!searcP2.innerHTML.includes(result.title)){
+            if (!searcP2.innerHTML.includes(result.title)){ // make sure there's no duplicates cuz that's annoying
                 searcP2.innerHTML += `<p onclick="getSong(${result.id})">${result.title}</p>`;
             }
         });
@@ -58,9 +60,10 @@ function getSong(id){
         // change the label to match the search
         label.innerHTML = labelText + data.title + " by " + data.artists[0].name;
 
+        // collect the info to use as reference later
         baseCountry = data.country
         baseYear = String(data.year);
-        genre = data.genres[0];
+        genre = data.genres[0]; // so far I haven't found a song with multiple genres but idk man
         baseStyle = data.styles;
 
         generateList(1, parseInt(baseYear, 10)-10, parseInt(baseYear, 10)+10);
@@ -125,7 +128,7 @@ function generateList(page, min, max){ // params mean that the min & max can be 
         }
         if (count < 10){ // if <10, go to the next page
             thisOne = 0;
-            generateList(page+1); // rerun on next page
+            generateList(page+1, parseInt(baseYear, 10)-10, parseInt(baseYear, 10)+10); // rerun on next page
         }else{
             // isDone = true;
         }
@@ -142,7 +145,7 @@ function getInfo(song, num, percent){
     .then(data => { // create each result using the fetched data
         if (artistName == data.artists[0].name || artistName == "none"){ // part of unused feature
             resultList.innerHTML = "";
-            resultCollect.push({
+            resultCollect.push({ // made as an array of objects to better sort
                 "text": `<div class="result" id="${num}">
                     <h3>${data.title} - ${data.artists[0].name}</h3>
                     <img src="${data.images[0].uri}" style="width: 100%;">
@@ -153,7 +156,7 @@ function getInfo(song, num, percent){
                 "score": percent
             });
         }
-        sortList();
+        sortList(); // ok yes it's bad that I sort the list *every time* there's a new result added but honestly I couldn't think of a better solution without rewriting like half this file so it is what it is
     })
     .catch(error => {
         // sortList();
@@ -183,19 +186,16 @@ function update(){
         var userMin = document.getElementById("min").value;
         var userMax = document.getElementById("max").value;
 
-        if (userMin.toString().length == 4 && userMax.toString().length == 4){
+        if (userMin.toString().length == 4 && userMax.toString().length == 4){ // only runs for valid years (I don't think people are searching for songs from the year 12 but who knows)
             generateList(1, userMin, userMax);
         }
     }
 }
 
 // ------------------------------ show the year input ------------------------------
-// var check = true; // create a boolean to hide/show content
 function show(){
     var checkYear = document.getElementById("yearCheck");
     var box = document.getElementById("dateRange");
-    // check = !check;
-    // console.log(check); 
     if (checkYear.checked){ // if the user wants to search by year, they need to access the year input boxes
         box.style.display = "inline";
     }else{
