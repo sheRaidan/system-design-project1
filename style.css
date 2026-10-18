@@ -26,8 +26,10 @@ header{
     background: paleturquoise;
     border-top: 2px solid #2f6f6f !important;
 }
-#search, button{
+#search, #searchBtn{
     margin-top: 30vh;
+}
+#search, button{
     font-family: "Comfortaa", sans-serif;
     font-weight: bold;
     border-radius: 5px;
