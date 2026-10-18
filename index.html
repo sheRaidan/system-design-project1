@@ -15,16 +15,14 @@
     </header>
     <input id="search" type="text" placeholder="Enter any song title">
     <button onclick="search()" id="searchBtn">Search</button>
+    <!-- #specify & #results are programmed to be hidden when not in use to avoid clutter -->
     <div id="specify"></div>
     <div id="results">
         <h2 id="label"></h2>
         <div id="settings">
             <p>Match by:</p>
+            <!-- I don't know if an unordered list was the best way to format these elements or the results but hey it works -->
             <ul>
-                <li style="display: none;">
-                    Length
-                    <input type="checkbox" id="lengthCheck">
-                </li>
                 <li>
                     Year
                     <input type="checkbox" id="yearCheck" onclick="show()" checked>
@@ -39,13 +37,10 @@
                     Country of Origin
                     <input type="checkbox" id="originCheck" checked>
                 </li>
-                <li id="artist" style="display: none;">
-                    Artist
-                    <input type="checkbox" id="artistCheck">
-                </li>
                 <li><button id="update" onclick="update()">Update</button></li>
             </ul>
         </div>
+        <!-- I'm bad at naming IDs ok ...this list is for the results when the code finishes fetching info -->
         <ul id="list"></ul>
     </div>
     <script src="main.js"></script>
