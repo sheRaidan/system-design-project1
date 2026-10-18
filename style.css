@@ -41,9 +41,12 @@ header{
     padding: 5px;
     width: fit-content;
     transition: all 0.2s;
+    border-radius: 5px;
+    border: none;
 }
 #specify p:hover{
-    background: teal;
+    background: #2F6F6F;
+    border-bottom: 2px solid black;
 }
 
 #settings *, #dateRange *{
