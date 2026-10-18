@@ -24,16 +24,17 @@ header{
     /* min-width: fit-content; */
     grid-column: span 4;
     background: paleturquoise;
-    border-top: 2px solid #2f6f6f;
+    border-top: 2px solid #2f6f6f !important;
 }
 #search, button{
     margin-top: 30vh;
     font-family: "Comfortaa", sans-serif;
     font-weight: bold;
     border-radius: 5px;
+    border: none;
 }
 button{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid black !important;
     background: darkgreen;
     color: paleturquoise;
 }
